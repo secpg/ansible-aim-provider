@@ -77,8 +77,8 @@
       - name: Logon to CyberArk Vault using PAS Web Services SDK - Not use_shared_logon_authentication
         cyberark_authentication:
           api_base_url: "{{ api_base_url }}"
-          username: "{{ password_object.password }}"
-          password: "{{ password_object.passprops.username }}"
+          username: '{{ lookup("cyberarkpassword", {"appid": "ansible", "query": "safe=impact-2018;folder=root;object=Application-CyberArk-10.25.10.5-Administrator", "output": "UserName"}) }}'
+          password: '{{ lookup("cyberarkpassword", {"appid": "ansible", "query": "safe=impact-2018;folder=root;object=Application-CyberArk-10.25.10.5-Administrator", "output": "Password"}) }}'
           use_shared_logon_authentication: false
           validate_certs: "{{ validate_certs }}"
           validate_certs: "{{ validate_certs }} "
